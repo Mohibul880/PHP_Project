@@ -8,7 +8,7 @@ $message = "";
 
 if(!empty($_POST)){
 
-    // User Inputs
+    // User Inputs all post item
     $user_name     = trim($_POST['name']);
     $user_phone    = trim($_POST['phone']);
     $user_email    = trim($_POST['email']);
