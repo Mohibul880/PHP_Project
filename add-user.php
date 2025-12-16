@@ -7,7 +7,7 @@ $message = "";
 
 if(!empty($_POST)){
 
-    // USER INPUTS
+    // USER INPUT
     $user_name     = trim($_POST['name']);
     $user_phone    = trim($_POST['phone']);
     $user_email    = trim($_POST['email']);
@@ -16,49 +16,63 @@ if(!empty($_POST)){
     $user_cpass    = trim($_POST['cpass']);
     $user_role     = trim($_POST['role']);
 
-    // NESTED IF VALIDATION
-    if(empty($user_name)){
-        $message = "<div class='alert alert-danger'>Please enter your Name.</div>";
-    }else{
-        if(empty($user_phone)){
-            $message = "<div class='alert alert-danger'>Please enter your Phone.</div>";
-        }else{
-            if(empty($user_email)){
-                $message = "<div class='alert alert-danger'>Please enter your Email.</div>";
-            }else{
-                if(empty($user_username)){
-                    $message = "<div class='alert alert-danger'>Please enter your Username.</div>";
-                }else{
-                    if(empty($user_pass)){
-                        $message = "<div class='alert alert-danger'>Please enter your Password.</div>";
-                    }else{
-                        if($user_pass != $user_cpass){
-                            $message = "<div class='alert alert-danger'>Password & Confirm Password do not match!</div>";
-                        }else{
+    if(!empty($user_name)){
 
-                            // PASSWORD ENCRYPT
-                            $enc_pass = password_hash($user_pass, PASSWORD_DEFAULT);
+        if(!empty($user_phone)){
 
-                            // INSERT QUERY
-                            $insert = "INSERT INTO users 
-                            (user_name, user_phone, user_email, user_username, user_pass, role_id)
-                            VALUES 
-                            ('$user_name', '$user_phone', '$user_email', '$user_username', '$enc_pass', '$user_role')";
+            if(!empty($user_email)){
 
-                            if(mysqli_query($conn, $insert)){
-                                $_SESSION['success'] = "User Registration Successful!";
-                                header("Location: all-user.php");
-                                exit();
+                if(!empty($user_username)){
+
+                    if(!empty($user_pass)){
+
+                        if(!empty($user_cpass)){
+
+                            if($user_pass === $user_cpass){
+
+                                // PASSWORD ENCRYPT
+                                $enc_pass = password_hash($user_pass, PASSWORD_DEFAULT);
+
+                                // INSERT QUERY
+                                $insert = "INSERT INTO users 
+                                (user_name, user_phone, user_email, user_username, user_pass, role_id)
+                                VALUES 
+                                ('$user_name', '$user_phone', '$user_email', '$user_username', '$enc_pass', '$user_role')";
+
+                                if(mysqli_query($conn, $insert)){
+                                    $_SESSION['success'] = "User Register Successfully!";
+                                    header("Location: all-user.php");
+                                    exit();
+                                }else{
+                                    $message = "<div class='alert alert-danger'>Database Error! Please try again.</div>";
+                                }
+
                             }else{
-                                $message = "<div class='alert alert-danger'>
-                                    Database Error: ".mysqli_error($conn)."
-                                </div>";
+                                $message = "<div class='alert alert-danger'>Password & Confirm Password did not match!</div>";
                             }
+
+                        }else{
+                            $message = "<div class='alert alert-danger'>Please enter Confirm Password.</div>";
                         }
+
+                    }else{
+                        $message = "<div class='alert alert-danger'>Please enter Password.</div>";
                     }
+
+                }else{
+                    $message = "<div class='alert alert-danger'>Please enter Username.</div>";
                 }
+
+            }else{
+                $message = "<div class='alert alert-danger'>Please enter Email.</div>";
             }
+
+        }else{
+            $message = "<div class='alert alert-danger'>Please enter Phone.</div>";
         }
+
+    }else{
+        $message = "<div class='alert alert-danger'>Please enter Name.</div>";
     }
 }
 ?>
@@ -82,6 +96,7 @@ if(!empty($_POST)){
         <div class="col-md-12">
             <form method="post" action="">
                 <div class="card mb-3">
+
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-8 card_title_part">
@@ -98,9 +113,7 @@ if(!empty($_POST)){
                     <div class="card-body">
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label col_form_label">
-                                Name<span class="req_star">*</span>:
-                            </label>
+                            <label class="col-sm-3 col-form-label">Name *</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="name"
                                 value="<?php echo isset($user_name) ? $user_name : ''; ?>">
@@ -108,7 +121,7 @@ if(!empty($_POST)){
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label col_form_label">Phone:</label>
+                            <label class="col-sm-3 col-form-label">Phone *</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="phone"
                                 value="<?php echo isset($user_phone) ? $user_phone : ''; ?>">
@@ -116,9 +129,7 @@ if(!empty($_POST)){
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label col_form_label">
-                                Email<span class="req_star">*</span>:
-                            </label>
+                            <label class="col-sm-3 col-form-label">Email *</label>
                             <div class="col-sm-7">
                                 <input type="email" class="form-control" name="email"
                                 value="<?php echo isset($user_email) ? $user_email : ''; ?>">
@@ -126,9 +137,7 @@ if(!empty($_POST)){
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label col_form_label">
-                                Username<span class="req_star">*</span>:
-                            </label>
+                            <label class="col-sm-3 col-form-label">Username *</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="user_username"
                                 value="<?php echo isset($user_username) ? $user_username : ''; ?>">
@@ -136,37 +145,31 @@ if(!empty($_POST)){
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label col_form_label">
-                                Password<span class="req_star">*</span>:
-                            </label>
+                            <label class="col-sm-3 col-form-label">Password *</label>
                             <div class="col-sm-7">
                                 <input type="password" class="form-control" name="pass">
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label col_form_label">
-                                Confirm Password<span class="req_star">*</span>:
-                            </label>
+                            <label class="col-sm-3 col-form-label">Confirm Password *</label>
                             <div class="col-sm-7">
                                 <input type="password" class="form-control" name="cpass">
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label col_form_label">
-                                User Role<span class="req_star">*</span>:
-                            </label>
+                            <label class="col-sm-3 col-form-label">User Role *</label>
                             <div class="col-sm-4">
                                 <select class="form-control" name="role">
                                     <?php
                                     $selr = "SELECT * FROM roles ORDER BY role_id DESC";
-                                    $QR = mysqli_query($conn,$selr);
+                                    $QR = mysqli_query($conn, $selr);
                                     while($role = mysqli_fetch_assoc($QR)){
                                     ?>
-                                    <option value="<?php echo $role['role_id']; ?>">
-                                        <?php echo $role['role_name']; ?>
-                                    </option>
+                                        <option value="<?php echo $role['role_id']; ?>">
+                                            <?php echo $role['role_name']; ?>
+                                        </option>
                                     <?php } ?>
                                 </select>
                             </div>
