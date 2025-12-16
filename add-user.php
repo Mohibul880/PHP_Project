@@ -113,7 +113,7 @@ if(!empty($_POST)){
                     <div class="card-body">
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Name *</label>
+                            <label class="col-sm-3 col-form-label col_form_label">Name *</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="name"
                                 value="<?php echo isset($user_name) ? $user_name : ''; ?>">
@@ -121,7 +121,7 @@ if(!empty($_POST)){
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Phone *</label>
+                            <label class="col-sm-3 col-form-label col_form_label">Phone *</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="phone"
                                 value="<?php echo isset($user_phone) ? $user_phone : ''; ?>">
@@ -129,7 +129,7 @@ if(!empty($_POST)){
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Email *</label>
+                            <label class="col-sm-3 col-form-label col_form_label">Email *</label>
                             <div class="col-sm-7">
                                 <input type="email" class="form-control" name="email"
                                 value="<?php echo isset($user_email) ? $user_email : ''; ?>">
@@ -137,7 +137,7 @@ if(!empty($_POST)){
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Username *</label>
+                            <label class="col-sm-3 col-form-label col_form_label">Username *</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="user_username"
                                 value="<?php echo isset($user_username) ? $user_username : ''; ?>">
@@ -145,21 +145,21 @@ if(!empty($_POST)){
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Password *</label>
+                            <label class="col-sm-3 col-form-label col_form_label">Password *</label>
                             <div class="col-sm-7">
                                 <input type="password" class="form-control" name="pass">
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Confirm Password *</label>
+                            <label class="col-sm-3 col-form-label col_form_label">Confirm Password *</label>
                             <div class="col-sm-7">
                                 <input type="password" class="form-control" name="cpass">
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">User Role *</label>
+                            <label class="col-sm-3 col-form-label col_form_label">User Role *</label>
                             <div class="col-sm-4">
                                 <select class="form-control" name="role">
                                     <?php
@@ -174,6 +174,8 @@ if(!empty($_POST)){
                                 </select>
                             </div>
                         </div>
+                        <div class="row mb-3"> 
+                            <label class="col-sm-3 col-form-label col_form_label">Photo: *</label> <div class="col-sm-4"> <input type="file" class="form-control form_control" id="" name=""> </div> </div>
 
                     </div>
 
