@@ -16,6 +16,9 @@ if(!empty($_POST)){
     $user_cpass    = trim($_POST['cpass']);
     $user_role     = trim($_POST['role']);
 
+    // PHOTO
+    $image = $_FILES['photo'];
+
     if(!empty($user_name)){
 
         if(!empty($user_phone)){
@@ -33,16 +36,28 @@ if(!empty($_POST)){
                                 // PASSWORD ENCRYPT
                                 $enc_pass = password_hash($user_pass, PASSWORD_DEFAULT);
 
+                                // IMAGE NAME
+                                if(!empty($image['name'])){
+                                    $imageName = "user_photo_" . time() . "_" . rand(1000,9999) . "." .
+                                                 pathinfo($image['name'], PATHINFO_EXTENSION);
+                                }else{
+                                    $imageName = "default.png";
+                                }
+
                                 // INSERT QUERY
-                                $insert = "INSERT INTO users 
-                                (user_name, user_phone, user_email, user_username, user_pass, role_id)
-                                VALUES 
-                                ('$user_name', '$user_phone', '$user_email', '$user_username', '$enc_pass', '$user_role')";
+                                $insert = "INSERT INTO users (user_name, user_phone, user_email, user_username, user_pass, role_id,user_photo) 
+                                VALUES ('$user_name', '$user_phone', '$user_email', '$user_username', '$enc_pass', '$user_role', '$imageName')";
 
                                 if(mysqli_query($conn, $insert)){
+
+                                    if(!empty($image['name'])){
+                                        move_uploaded_file($image['tmp_name'], "uploads/user/".$imageName);
+                                    }
+
                                     $_SESSION['success'] = "User Register Successfully!";
                                     header("Location: all-user.php");
                                     exit();
+
                                 }else{
                                     $message = "<div class='alert alert-danger'>Database Error! Please try again.</div>";
                                 }
@@ -94,7 +109,7 @@ if(!empty($_POST)){
 
     <div class="row">
         <div class="col-md-12">
-            <form method="post" action="">
+            <form method="post" action="" enctype="multipart/form-data">
                 <div class="card mb-3">
 
                     <div class="card-header">
@@ -174,8 +189,14 @@ if(!empty($_POST)){
                                 </select>
                             </div>
                         </div>
+
+                        <!-- PHOTO (FIXED, FORMAT SAME) -->
                         <div class="row mb-3"> 
-                            <label class="col-sm-3 col-form-label col_form_label">Photo: *</label> <div class="col-sm-4"> <input type="file" class="form-control form_control" id="" name=""> </div> </div>
+                            <label class="col-sm-3 col-form-label col_form_label">Photo: *</label> 
+                            <div class="col-sm-4"> 
+                                <input type="file" class="form-control form_control" name="photo"> 
+                            </div> 
+                        </div>
 
                     </div>
 
