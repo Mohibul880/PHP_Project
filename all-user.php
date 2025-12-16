@@ -75,7 +75,7 @@ get_sidebar();
                                                      alt="User Photo">
                                             <?php } else { ?>
                                                 <img height="50" width="60"
-                                                     src="uploads/defualt/defualt.png"
+                                                     src="uploads/defualt/defualt.jpg"
                                                      alt="No Photo">
                                             <?php } ?>
                                         </td>
