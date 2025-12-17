@@ -41,7 +41,7 @@ if(!empty($_POST)){
                                     $imageName = "user_photo_" . time() . "_" . rand(1000,9999) . "." .
                                                  pathinfo($image['name'], PATHINFO_EXTENSION);
                                 }else{
-                                    $imageName = "default.png";
+                                    $imageName = "";
                                 }
 
                                 // INSERT QUERY
