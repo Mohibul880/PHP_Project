@@ -16,6 +16,10 @@
     
 <script src="js/jquery-3.7.1.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.3.5/js/dataTables.min.js"></script>
+<script>
+    let table = new DataTable('userTable');
+</script>
 <script src="js/custom.js"></script>
 
 

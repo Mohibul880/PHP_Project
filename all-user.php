@@ -40,7 +40,7 @@ get_sidebar();
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-bordered table-striped table-hover custom_table">
+                    <table id="userTable" class="table table-bordered table-striped table-hover custom_table">
                         <thead class="table-dark">
                             <tr>
                                 <th>Name</th>
