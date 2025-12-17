@@ -38,7 +38,7 @@ if(!empty($_POST)){
 
                                 // IMAGE NAME
                                 if(!empty($image['name'])){
-                                    $imageName = "user_photo_" . time() . "_" . rand(10000000,999999999) . "." .
+                                    $imageName = $user_name . time() . "_" . rand(10000000,999999999) . "." .
                                                  pathinfo($image['name'], PATHINFO_EXTENSION);
                                 }else{
                                     $imageName = "";
