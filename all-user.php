@@ -69,16 +69,19 @@ get_sidebar();
 
                                         <!-- USER PHOTO -->
                                         <td>
-                                            <?php if (!empty($data['user_photo'])) { ?>
-                                                <img height="60" style="boder-radius:50%;" width="60"
-                                                     src="uploads/user/<?php echo $data['user_photo']; ?>"
-                                                     alt="User Photo">
-                                            <?php } else { ?>
-                                                <img height="60" style="boder-radius:50%;" width="60"
-                                                     src="uploads/defualt/defualt.jpg"
-                                                     alt="No Photo">
-                                            <?php } ?>
-                                        </td>
+    <?php if (!empty($data['user_photo'])) { ?>
+        <img height="60" width="60"
+             style="border-radius:50%; object-fit:cover;"
+             src="uploads/user/<?php echo $data['user_photo']; ?>"
+             alt="User Photo">
+    <?php } else { ?>
+        <img height="60" width="60"
+             style="border-radius:50%; object-fit:cover;"
+             src="uploads/defualt/defualt.jpg"
+             alt="No Photo">
+    <?php } ?>
+</td>
+
 
                                         <td><?php echo $data['role_name']; ?></td>
 
