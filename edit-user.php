@@ -71,7 +71,7 @@ $data = mysqli_fetch_assoc($q);
                                     $QR = mysqli_query($conn, $selr);
                                     while($role = mysqli_fetch_assoc($QR)){
                                     ?>
-                                        <option <?php if($data['role_id'] = $role['role_id']){ echo "selected"; } ?> value="<?php echo $role['role_id']; ?>">
+                                        <option <?php if($data['role_id'] == $role['role_id']){ echo "selected"; } ?> value="<?php echo $role['role_id']; ?>">
                                             <?php echo $role['role_name']; ?>
                                         </option>
                                     <?php } ?>
@@ -82,6 +82,19 @@ $data = mysqli_fetch_assoc($q);
                           <label class="col-sm-3 col-form-label col_form_label">Photo:</label>
                           <div class="col-sm-4">
                             <input type="file" class="form-control form_control" id="" name="">
+                          </div>
+                          <div class="col-sm-4">
+                            <?php if (!empty($data['user_photo'])) { ?>
+        <img height="60" width="60"
+             style="border-radius:50%; object-fit:cover;"
+             src="uploads/user/<?php echo $data['user_photo']; ?>"
+             alt="User Photo">
+    <?php } else { ?>
+        <img height="60" width="60"
+             style="border-radius:50%; object-fit:cover;"
+             src="uploads/defualt/defualt.jpg"
+             alt="No Photo">
+    <?php } ?>
                           </div>
                         </div>
                     </div>
