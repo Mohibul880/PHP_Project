@@ -3,6 +3,13 @@ require_once "functions/functions.php";
 get_header();
 get_sidebar();
 
+$id = $_GET['v'];
+
+$select = "SELECT * FROM users  NATURAL JOIN roles WHERE user_id = $id";
+$q = mysqli_query($conn, $select);
+$data = mysqli_fetch_assoc($q);
+
+
 ?>
 <div class="col-md-10 content">
     <div class="row">
@@ -36,27 +43,27 @@ get_sidebar();
                           <tr>
                             <td>Name</td>  
                             <td>:</td>  
-                            <td>Rasel Islam</td>  
+                            <td><?php echo $data['user_name'] ?></td>  
                           </tr>
                           <tr>
                             <td>Phone</td>  
                             <td>:</td>  
-                            <td>01757220125</td>  
+                            <td><?php echo $data['user_phone'] ?></td>  
                           </tr>
                           <tr>
                             <td>Email</td>  
                             <td>:</td>  
-                            <td>uylab.rasel@gmail.com</td>  
+                            <td><?php echo $data['user_email'] ?></td>  
                           </tr>
                           <tr>
                             <td>Username</td>  
                             <td>:</td>  
-                            <td>raseldevs</td>  
+                            <td><?php echo $data['user_username'] ?></td>  
                           </tr>
                           <tr>
                             <td>Role</td>  
                             <td>:</td>  
-                            <td>---</td>  
+                            <td><?php echo $data['role_name'] ?></td>  
                           </tr>
                           <tr>
                             <td>Photo</td>  
