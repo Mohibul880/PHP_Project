@@ -102,7 +102,7 @@ get_sidebar();
                                             </li>
                                             <li>
                                                 <a class="dropdown-item"
-                                                    href="edit-user.php?v=<?php echo $data['User_Id']; ?>">
+                                                    href="edit-user.php?e=<?php echo $data['User_Id']; ?>">
                                                     Edit
                                                 </a>
                                             </li>
