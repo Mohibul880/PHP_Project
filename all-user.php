@@ -83,61 +83,61 @@ get_sidebar();
 </td>
 
 
-                                        <td><?php echo $data['role_name']; ?></td>
+                                <td><?php echo $data['role_name']; ?></td>
 
-                                        <!-- MANAGE BUTTON -->
-                                        <td>
-                                            <div class="btn-group btn_group_manage" role="group">
-                                                <button type="button"
-                                                        class="btn btn-sm btn-dark dropdown-toggle"
-                                                        data-bs-toggle="dropdown">
-                                                    Manage
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a class="dropdown-item"
-                                                           href="view-user.php?u=<?php echo $data['User_Id']; ?>">
-                                                            View
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item"
-                                                           href="edit-user.php?u=<?php echo $data['User_Id']; ?>">
-                                                            Edit
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item"
-                                                           href="delete-user.php?u=<?php echo $data['User_Id']; ?>"
-                                                           onclick="return confirm('Are you sure?')">
-                                                            Delete
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                            <?php
-                                }
-                            } else {
-                                echo '<tr><td colspan="7" class="text-center">No users found</td></tr>';
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
+                                <!-- MANAGE BUTTON -->
+                                <td>
+                                    <div class="btn-group btn_group_manage" role="group">
+                                        <button type="button"
+                                                class="btn btn-sm btn-dark dropdown-toggle"
+                                                data-bs-toggle="dropdown">
+                                            Manage
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item"
+                                                    href="view-user.php?v=<?php echo $data['User_Id']; ?>">
+                                                    View
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item"
+                                                    href="edit-user.php?v=<?php echo $data['User_Id']; ?>">
+                                                    Edit
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item"
+                                                    href="delete-user.php?v=<?php echo $data['User_Id']; ?>"
+                                                    onclick="return confirm('Are you sure?')">
+                                                    Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                    <?php
+                        }
+                    } else {
+                        echo '<tr><td colspan="7" class="text-center">No users found</td></tr>';
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
 
-                <div class="card-footer">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-sm btn-dark">Print</button>
-                        <button type="button" class="btn btn-sm btn-secondary">PDF</button>
-                        <button type="button" class="btn btn-sm btn-dark">Excel</button>
-                    </div>
-                </div>
-
+        <div class="card-footer">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-sm btn-dark">Print</button>
+                <button type="button" class="btn btn-sm btn-secondary">PDF</button>
+                <button type="button" class="btn btn-sm btn-dark">Excel</button>
             </div>
         </div>
+
     </div>
+</div>
+</div>
 </div>
 
 <?php get_footer(); ?>
