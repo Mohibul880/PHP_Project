@@ -8,7 +8,16 @@ $select = "SELECT * FROM users  NATURAL JOIN roles WHERE user_id = $id";
 $q = mysqli_query($conn, $select);
 $data = mysqli_fetch_assoc($q);
 
+if(!empty($_POST)){
 
+    // USER INPUT
+    $user_name     = trim($_POST['name']);
+    $user_phone    = trim($_POST['phone']);
+    $user_email    = trim($_POST['email']);
+    $user_role     = trim($_POST['role']);
+    $image = $_FILES['photo'];
+
+}
 
 ?>
   <div class="col-md-10 content">
@@ -24,7 +33,7 @@ $data = mysqli_fetch_assoc($q);
       </div>
       <div class="row">
           <div class="col-md-12 ">
-              <form method="" action="">
+              <form method="POST" action="" enctype="multipart/form-data">
                   <div class="card mb-3">
                     <div class="card-header">
                       <div class="row">
@@ -40,25 +49,25 @@ $data = mysqli_fetch_assoc($q);
                         <div class="row mb-3">
                           <label class="col-sm-3 col-form-label col_form_label">Name<span class="req_star">*</span>:</label>
                           <div class="col-sm-7">
-                            <input type="text" class="form-control form_control" value="<?php echo $data['user_name']  ?>" id="" name="">
+                            <input type="text" class="form-control form_control" value="<?php echo $data['user_name']  ?>" id="" name="name">
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label class="col-sm-3 col-form-label col_form_label">Phone:</label>
                           <div class="col-sm-7">
-                            <input type="text" class="form-control form_control"  value="<?php echo $data['user_phone'] ?>" id="" name="">
+                            <input type="text" class="form-control form_control"  value="<?php echo $data['user_phone'] ?>" id="" name="phone">
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label class="col-sm-3 col-form-label col_form_label">Email<span class="req_star">*</span>:</label>
                           <div class="col-sm-7">
-                            <input type="email" class="form-control form_control"  value="<?php echo $data['user_email'] ?>" id="" name="">
+                            <input type="email" class="form-control form_control"  value="<?php echo $data['user_email'] ?>" id="" name="email">
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label class="col-sm-3 col-form-label col_form_label">Username<span class="req_star">*</span>:</label>
                           <div class="col-sm-7">
-                            <input type="text" class="form-control form_control"  value="<?php echo $data['user_username'] ?>" id="" name="">
+                            <input type="text" disabled class="form-control form_control"  value="<?php echo $data['user_username'] ?>" id="" name="">
                           </div>
                         </div>
                         
@@ -81,20 +90,20 @@ $data = mysqli_fetch_assoc($q);
                         <div class="row mb-3">
                           <label class="col-sm-3 col-form-label col_form_label">Photo:</label>
                           <div class="col-sm-4">
-                            <input type="file" class="form-control form_control" id="" name="">
+                            <input type="file" class="form-control form_control" id="" name="photo">
                           </div>
                           <div class="col-sm-4">
                             <?php if (!empty($data['user_photo'])) { ?>
-        <img height="60" width="60"
-             style="border-radius:50%; object-fit:cover;"
-             src="uploads/user/<?php echo $data['user_photo']; ?>"
-             alt="User Photo">
-    <?php } else { ?>
-        <img height="60" width="60"
-             style="border-radius:50%; object-fit:cover;"
-             src="uploads/defualt/defualt.jpg"
-             alt="No Photo">
-    <?php } ?>
+                                <img height="60" width="60"
+                                    style="border-radius:50%; object-fit:cover;"
+                                    src="uploads/user/<?php echo $data['user_photo']; ?>"
+                                    alt="User Photo">
+                            <?php } else { ?>
+                                <img height="60" width="60"
+                                    style="border-radius:50%; object-fit:cover;"
+                                    src="uploads/defualt/defualt.jpg"
+                                    alt="No Photo">
+                            <?php } ?>
                           </div>
                         </div>
                     </div>
