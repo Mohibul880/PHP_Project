@@ -27,7 +27,13 @@ if(!empty($_POST)){
                                     $imageName = $imageold;
                                 }
 
-                                $update = "UPDATE users SET (user_name,user_phone,user_email,role_id,user_photo) VALUE ('$user_name','$user_phone','$user_email','$$user_role','$$imageName') WHERE user_id = $id";
+                                $update = "UPDATE users SET 
+                                user_name = '$user_name', 
+                                user_phone = '$user_phone', 
+                                user_email = '$user_email', 
+                                role_id = '$user_role',
+                                user_photo = '$imageName'  
+                                WHERE user_id = $id";
 
 }
 
@@ -46,7 +52,8 @@ if(!empty($_POST)){
       <div class="row">
           <div class="col-md-12 ">
             <?php 
-            if(!empty($user_name)){
+            if(!empty($_POST)){
+              if(!empty($user_name)){
               if(!empty($user_phone)){
                 if(!empty($user_email)){
                   if(!empty($user_role)){
@@ -70,6 +77,8 @@ if(!empty($_POST)){
               }
             }else{
               echo "<div class='alert alert-danger'>Name Can Not be Empty!.</div>";
+            }
+
             }
             
             ?>
