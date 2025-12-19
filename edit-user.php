@@ -8,6 +8,8 @@ $select = "SELECT * FROM users  NATURAL JOIN roles WHERE user_id = $id";
 $q = mysqli_query($conn, $select);
 $data = mysqli_fetch_assoc($q);
 
+$imageold = $data['user_photo'];
+
 if(!empty($_POST)){
 
     // USER INPUT
@@ -19,11 +21,13 @@ if(!empty($_POST)){
 
     // IMAGE NAME
                                 if(!empty($image['name'])){
-                                    $imageName = $user_name . time() . "_" . rand(10000000,999999999) . "." .
+                                    $imageName = $user_name . time() . "_Updated_" . rand(10000000,999999999) . "." .
                                                  pathinfo($image['name'], PATHINFO_EXTENSION);
                                 }else{
-                                    $imageName = $data['user_photo'];
+                                    $imageName = $imageold;
                                 }
+
+                                $update = "UPDATE users SET (user_name,user_phone,user_email,role_id,user_photo) VALUE ('$user_name','$user_phone','$user_email','$$user_role','$$imageName') WHERE user_id = $id";
 
 }
 
@@ -41,6 +45,34 @@ if(!empty($_POST)){
       </div>
       <div class="row">
           <div class="col-md-12 ">
+            <?php 
+            if(!empty($user_name)){
+              if(!empty($user_phone)){
+                if(!empty($user_email)){
+                  if(!empty($user_role)){
+                    if(mysqli_query($conn, $update)){
+                      move_uploaded_file($image['tmp_name'], "uploads/user/".$imageName);
+                      $_SESSION['success'] = "Information Update Successfully!";
+                                    header("Location: all-user.php");
+                                    exit();
+                    }else{
+                      echo "<div class='alert alert-danger'>Somthing Went Wrong!</div>";
+                    }
+                  }else{
+                    echo "<div class='alert alert-danger'>Plese Select Role.</div>";
+                  }
+                }else{
+                  echo "<div class='alert alert-danger'>Email Can Not be Empty!.</div>";
+                }
+              }else{
+                echo "<div class='alert alert-danger'>Number Can Not be Empty!.</div>";
+
+              }
+            }else{
+              echo "<div class='alert alert-danger'>Name Can Not be Empty!.</div>";
+            }
+            
+            ?>
               <form method="POST" action="" enctype="multipart/form-data">
                   <div class="card mb-3">
                     <div class="card-header">
