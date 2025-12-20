@@ -19,7 +19,7 @@ if(!empty($_POST)){
     $user_role     = trim($_POST['role']);
     $image = $_FILES['photo'];
 
-    // IMAGE NAME
+    // IMAGE NAME update
                                 if(!empty($image['name'])){
                                     $imageName = $user_name . time() . "_Updated_" . rand(10000000,999999999) . "." .
                                                  pathinfo($image['name'], PATHINFO_EXTENSION);
