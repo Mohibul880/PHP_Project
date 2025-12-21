@@ -6,15 +6,26 @@ $(function(){
 });
 
 
-$(document).ready(function () {
-    $('#photo').change(function (e) {
 
-        let reader = new FileReader();
+$(function () {
 
-        reader.onload = function (e) {
-            $('#preview').attr('src', e.target.result);
-        };
+    // alert hide
+    setTimeout(function () {
+        $(".alert").slideUp();
+    }, 3000);
 
-        reader.readAsDataURL(this.files[0]);
+    // image preview
+    $("#photo").on("change", function () {
+        let file = this.files[0];
+        if (file) {
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                $("#preview").attr("src", e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
     });
+
 });
+
+
