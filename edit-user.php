@@ -154,7 +154,7 @@ if (!empty($_POST)) {
                             </div>
                         </div>
 
-                        <!-- PHOTO -->
+                        <!-- PHOTO Prevew Update  -->
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Photo</label>
 
