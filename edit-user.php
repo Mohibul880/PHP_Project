@@ -139,16 +139,16 @@ if(!empty($_POST)){
                         <div class="row mb-3">
                           <label class="col-sm-3 col-form-label col_form_label">Photo:</label>
                           <div class="col-sm-4">
-                            <input type="file" class="form-control form_control" id="" name="photo">
+                            <input type="file" class="form-control form_control" id="photo" name="photo">
                           </div>
                           <div class="col-sm-4">
                             <?php if (!empty($data['user_photo'])) { ?>
-                                <img height="60" width="60"
+                                <img id="preview" height="60" width="60"
                                     style="border-radius:50%; object-fit:cover;"
                                     src="uploads/user/<?php echo $data['user_photo']; ?>"
                                     alt="User Photo">
                             <?php } else { ?>
-                                <img height="60" width="60"
+                                <img id="preview" height="60" width="60"
                                     style="border-radius:50%; object-fit:cover;"
                                     src="uploads/defualt/defualt.jpg"
                                     alt="No Photo">
