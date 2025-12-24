@@ -107,7 +107,7 @@ get_sidebar();
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item"
+                                                <a class="dropdown-item bg-danger text-light"
                                                     href="delete-user.php?d=<?php echo $data['User_Id']; ?>"
                                                     onclick="return confirm('Are you sure?')">
                                                     Delete
