@@ -85,7 +85,7 @@ get_sidebar();
 
                                 <td><?php echo $data['role_name']; ?></td>
 
-                                <!-- MANAGE BUTTON -->
+                                <!-- MANAGE BUTTON  -->
                                 <td>
                                     <div class="btn-group btn_group_manage" role="group">
                                         <button type="button"
