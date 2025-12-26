@@ -18,7 +18,7 @@ get_sidebar();
                     </div>
                     <div class="row">
                         <div class="col-md-12 welcome_part">
-                            <p><span>Welcome TO </span> <?php echo $_SESSION['name']; ?></p>
+                            <p><span>Welcome TO</span> <?php echo $_SESSION['name']; ?></p>
                         </div>
                     </div>
                 </div>
