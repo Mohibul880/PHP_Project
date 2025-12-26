@@ -36,6 +36,9 @@ require_once "functions/functions.php";
                                         if(!empty($_POST['input_username'])){
                                             if(!empty($_POST['input_password'])){
                                                 if(!empty($data)){
+                                                    $_SESSION['name'] = $data['user_name'];
+                                                    $_SESSION['role_id'] = $data['role_id'];
+                                                    $_SESSION['username'] = $data['user_username'];
                                                     header("Location: index.php");
                                                 }else{
                                                     echo "Invalid Credentials!";
