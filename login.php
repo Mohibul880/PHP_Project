@@ -1,3 +1,8 @@
+<?php
+require_once "functions/functions.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,12 +23,25 @@
                         <div class="row">
                             <div class="col-md-7 pe-0">
                                 <div class="form-left h-100 py-5 px-5">
-                                    <form action="" class="row g-4">
+                                    <?php 
+                                    if(!empty($_POST)){
+                                        $input_username = $_POST['input_username'];
+                                        $input_password = $_POST['input_password'];
+
+                                        $select = "SELECT * FROM users WHERE user_username = $input_username AND user_pass = $input_password";
+                                        $q = mysqli_query($conn, $select);
+                                        $data = mysqli_fetch_assoc($q);
+
+                                    }
+
+
+                                    ?>
+                                    <form method="post" action="" class="row g-4">
                                         <div class="col-12">
                                             <label>Username<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
-                                                <input type="text" class="form-control" placeholder="Enter Username">
+                                                <input type="text" class="form-control" name="input_username" placeholder="Enter Username">
                                             </div>
                                         </div>
 
@@ -31,7 +49,7 @@
                                             <label>Password<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
-                                                <input type="text" class="form-control" placeholder="Enter Password">
+                                                <input type="text" class="form-control" name="input_password" placeholder="Enter Password">
                                             </div>
                                         </div>
 
