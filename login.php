@@ -26,11 +26,26 @@ require_once "functions/functions.php";
                                     <?php 
                                     if(!empty($_POST)){
                                         $input_username = $_POST['input_username'];
-                                        $input_password = $_POST['input_password'];
+                                        $input_password = md5($_POST['input_password']);
 
-                                        $select = "SELECT * FROM users WHERE user_username = $input_username AND user_pass = $input_password";
+                                        $select = "SELECT * FROM users WHERE user_username = '$input_username' AND user_pass = '$input_password' ";
                                         $q = mysqli_query($conn, $select);
                                         $data = mysqli_fetch_assoc($q);
+
+
+                                        if(!empty($_POST['input_username'])){
+                                            if(!empty($_POST['input_password'])){
+                                                if(!empty($data)){
+                                                    header("Location: index.php");
+                                                }else{
+                                                    echo "Invalid Credentials!";
+                                                }
+                                            }else{
+                                                echo "Plese enter Password";
+                                            }
+                                        }else{
+                                            echo "Plese enter username";
+                                        }
 
                                     }
 
@@ -49,7 +64,7 @@ require_once "functions/functions.php";
                                             <label>Password<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
-                                                <input type="text" class="form-control" name="input_password" placeholder="Enter Password">
+                                                <input type="password" class="form-control" name="input_password" placeholder="Enter Password">
                                             </div>
                                         </div>
 

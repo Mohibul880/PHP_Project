@@ -34,7 +34,7 @@ if(!empty($_POST)){
                             if($user_pass === $user_cpass){
 
                                 // PASSWORD ENCRYPT
-                                $enc_pass = password_hash($user_pass, PASSWORD_DEFAULT);
+                                $enc_pass = md5($user_pass);
 
                                 // IMAGE NAME
                                 if(!empty($image['name'])){
