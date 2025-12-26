@@ -17,6 +17,17 @@ function get_footer(){
     require_once "includes/footer.php";
 }
 
+
+function loggedID(){
+    return !empty($_SESSION['id']) ? true:false;
+}
+function needlogged(){
+    $logCheck = loggedID();
+    if(!$logCheck){
+        header("Location: login.php");
+    }
+}
+
 ?>
 
 <?php
