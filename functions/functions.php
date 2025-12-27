@@ -22,9 +22,9 @@ function loggedID(){
     return !empty($_SESSION['id']) ? true:false;
 }
 function needlogged(){
-    $logCheck = loggedID();
-    if(!$logCheck){
+    if (!loggedID()) {
         header("Location: login.php");
+        exit;
     }
 }
 

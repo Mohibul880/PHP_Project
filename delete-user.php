@@ -1,5 +1,6 @@
 <?php
 require_once "functions/functions.php";
+needlogged();
 
 $id = $_GET['d'];
 

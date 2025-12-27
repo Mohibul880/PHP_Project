@@ -2,6 +2,7 @@
 require_once "functions/functions.php";
 get_header();
 get_sidebar();
+needlogged();
 ?>
 
 <div class="col-md-10 content">

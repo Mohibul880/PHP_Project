@@ -2,7 +2,7 @@
 require_once "functions/functions.php";
 get_header();
 get_sidebar();
-
+needlogged();
 $message = "";
 
 if(!empty($_POST)){

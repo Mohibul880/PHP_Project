@@ -2,6 +2,7 @@
 require_once "functions/functions.php";
 get_header();
 get_sidebar();
+needlogged();
 
 $id = $_GET['e'];
 $select = "SELECT * FROM users NATURAL JOIN roles WHERE user_id = $id";
