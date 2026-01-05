@@ -1,5 +1,7 @@
 <?php
 require_once "functions/functions.php";
+
+
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +85,7 @@ require_once "functions/functions.php";
                                         </div>
 
                                         <div class="col-12">
-                                            <button type="submit" class="btn btn-primary px-4 float-end mt-4">login</button>
+                                            <button type="submit"  name="login" class="btn btn-primary px-4 float-end mt-4">login</button>
                                         </div>
                                     </form>
                                 </div>
