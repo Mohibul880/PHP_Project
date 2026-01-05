@@ -1,8 +1,9 @@
 <?php
 require_once "functions/functions.php";
+needlogged();
 get_header();
 get_sidebar();
-needlogged();
+
  ?>
  
                 <div class="col-md-10 content">
