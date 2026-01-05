@@ -1,8 +1,9 @@
 
 
-
-<?php session_start();
+<?php
+session_start();
 require_once "config.php";
+
 
 function get_header(){
     require_once "includes/header.php";
@@ -30,11 +31,4 @@ function needlogged(){
 
 ?>
 
-<?php
-$conn = mysqli_connect("localhost", "root", "", "uy_lab_php-project");
-
-if(!$conn){
-    die("Database Connection Failed!");
-}
-?>
 
