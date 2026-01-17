@@ -1,4 +1,5 @@
 <?php
+
 require_once "functions/functions.php";
 
 $error = "";
@@ -14,10 +15,9 @@ if (isset($_POST['login'])) {
         $error = "Please enter password";
     } else {
 
-        // password encrypt
+        // single md5 (database matches this)
         $password = md5($input_password);
 
-        // ✅ FIXED QUERY (user_status REMOVED)
         $select = "SELECT * FROM users 
                    WHERE user_username='$input_username' 
                    AND user_pass='$password'";
@@ -28,11 +28,10 @@ if (isset($_POST['login'])) {
 
             $data = mysqli_fetch_assoc($q);
 
-            // ✅ SESSION SET
             $_SESSION['id']       = $data['user_id'];
             $_SESSION['name']     = $data['user_name'];
             $_SESSION['username'] = $data['user_username'];
-            $_SESSION['role']     = $data['user_role'];
+            $_SESSION['role']     = $data['role_id']; // ✅ FINAL FIX
 
             header("Location: index.php");
             exit;
@@ -42,7 +41,10 @@ if (isset($_POST['login'])) {
         }
     }
 }
+
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,10 +86,11 @@ if (isset($_POST['login'])) {
                                             <div class="input-group-text">
                                                 <i class="fas fa-user"></i>
                                             </div>
-                                            <input type="text" 
-                                                   class="form-control" 
-                                                   name="input_username" 
-                                                   placeholder="Enter Username">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="input_username"
+                                                   placeholder="Enter Username"
+                                                   required>
                                         </div>
                                     </div>
 
@@ -97,16 +100,17 @@ if (isset($_POST['login'])) {
                                             <div class="input-group-text">
                                                 <i class="fas fa-lock"></i>
                                             </div>
-                                            <input type="password" 
-                                                   class="form-control" 
-                                                   name="input_password" 
-                                                   placeholder="Enter Password">
+                                            <input type="password"
+                                                   class="form-control"
+                                                   name="input_password"
+                                                   placeholder="Enter Password"
+                                                   required>
                                         </div>
                                     </div>
 
                                     <div class="col-12">
-                                        <button type="submit" 
-                                                name="login" 
+                                        <button type="submit"
+                                                name="login"
                                                 class="btn btn-primary px-4 float-end mt-4">
                                             Login
                                         </button>

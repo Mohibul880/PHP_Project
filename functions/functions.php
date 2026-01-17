@@ -1,8 +1,6 @@
 <?php
-// ✅ SESSION START ONLY ONCE
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+ob_start();        // 🔥 output সমস্যা বন্ধ করবে
+session_start();  // 🔥 session ঠিকভাবে কাজ করবে
 
 require_once "config.php";
 
